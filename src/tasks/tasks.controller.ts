@@ -1,6 +1,20 @@
 import { GetTaskFilterDto } from './dto/get-tasks-filter.dto';
 import { TasksService } from './tasks.service';
-import { Controller, Get, Post, Body, Param, Delete, Patch, Query, UsePipes, ValidationPipe, ParseIntPipe, UseGuards, Logger } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Patch,
+  Query,
+  UsePipes,
+  ValidationPipe,
+  ParseIntPipe,
+  UseGuards,
+  Logger,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { TaskStatusValidationPipe } from './pipes/task-status-validation.pipe';
@@ -20,8 +34,12 @@ export class TasksController {
   getTasks(
     @Query(ValidationPipe) filterDto: GetTaskFilterDto,
     @GetUser() user: User,
-  ): Promise<Task[]>{
-    this.logger.verbose(`User "${user.username}" is retrieving all tasks. Filters: ${JSON.stringify(filterDto)}`);
+  ): Promise<Task[]> {
+    this.logger.verbose(
+      `User "${
+        user.username
+      }" is retrieving all tasks. Filters: ${JSON.stringify(filterDto)}`,
+    );
     return this.tasksService.getTasks(filterDto, user);
   }
 
@@ -39,7 +57,11 @@ export class TasksController {
     @Body() createTaskDto: CreateTaskDto,
     @GetUser() user: User,
   ): Promise<Task> {
-    this.logger.verbose(`User "${user.username}" creating a new task. Data: ${JSON.stringify(createTaskDto)}`);
+    this.logger.verbose(
+      `User "${user.username}" creating a new task. Data: ${JSON.stringify(
+        createTaskDto,
+      )}`,
+    );
     return this.tasksService.createTask(createTaskDto, user);
   }
 

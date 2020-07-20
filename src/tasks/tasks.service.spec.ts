@@ -48,7 +48,7 @@ describe('TasksService', () => {
 
   /* ------------------------------- getTaskById ------------------------------ */
   describe('getTaskById', () => {
-    it('calls taskRepository.findOne() and succesffuly retrive and return the task', async () => {
+    it('calls taskRepository.findOne() and successfully retrive and return the task', async () => {
       const mockTask = { title: 'Test Title', description: 'Test Description' };
       taskRepository.findOne.mockResolvedValue(mockTask);
       const result = await tasksService.getTaskById(1, mockUser);
